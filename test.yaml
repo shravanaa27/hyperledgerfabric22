@@ -1,0 +1,59 @@
+
+
+- &Bank
+        # DefaultOrg defines the organization which is used in the sampleconfig
+        # of the fabric.git development environment
+        Name: BankMSP
+
+        # ID to load the MSP definition as
+        ID: BankMSP
+
+        MSPDir: ./organizations/peerOrganizations/bank.example.com/msp
+
+        # Policies defines the set of policies at this level of the config tree
+        # For organization policies, their canonical path is usually
+        #   /Channel/<Application|Orderer>/<OrgName>/<PolicyName>
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('BankMSP.admin', 'BankMSP.peer', 'BankMSP.client')"
+            Writers:
+                Type: Signature
+                Rule: "OR('BankMSP.admin', 'BankMSP.client')"
+            Admins:
+                Type: Signature
+                Rule: "OR('BankMSP.admin')"
+            Endorsement:
+                Type: Signature
+                Rule: "OR('BankMSP.peer')"
+        AnchorPeers:
+            - Host: peer0.bank.example.com
+              Port: 8051
+
+
+
+/////Open another terminal with in Fabric-network folder, let's call this terminal as peer0_Bank terminal.
+
+############## peer0_Bank terminal ##############
+
+docker exec -it cli bash
+
+export CHANNEL_NAME=mychannel 
+
+export CORE_PEER_LOCALMSPID=BankMSP 
+
+export CORE_PEER_ADDRESS=peer0.bank.example.com:9051 
+
+export CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/bank.example.com/users/Admin@bank.example.com/msp
+
+export CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/bank.example.com/peers/peer0.bank.example.com/tls/server.crt 
+
+export CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/bank.example.com/peers/peer0.bank.example.com/tls/server.key 
+
+export CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/bank.example.com/peers/peer0.bank.example.com/tls/ca.crt
+
+—---------------Join peer to the channel—-------------
+
+peer channel join -b $CHANNEL_NAME.block
+
+peer channel list
