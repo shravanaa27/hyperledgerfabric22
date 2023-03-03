@@ -14,6 +14,11 @@ chmod +x registerEnroll.sh
 
 ./registerEnroll.sh
 
+
+----------Run ccp-Generate.sh file---------------------
+
+./ccp-generate.sh
+
 -------------Generate the genesis block—-------------------------------
 
 export FABRIC_CFG_PATH=${PWD}
@@ -22,7 +27,7 @@ configtxgen -profile ThreeOrgsOrdererGenesis -channelID system-channel -outputBl
 
 —--------Create the channel transaction—-----------------
 
-export CHANNEL_NAME=mychannel
+export CHANNEL_NAME=landchannel
 
 configtxgen -profile ThreeOrgsChannel -outputCreateChannelTx ./channel-artifacts/${CHANNEL_NAME}.tx -channelID $CHANNEL_NAME
 
@@ -38,7 +43,7 @@ sudo chmod -R 777 ../Chaincode/
 
 docker exec -it cli bash
 
-export CHANNEL_NAME=mychannel
+export CHANNEL_NAME=landchannel
 
 —-----------create channel—---------
 
@@ -57,7 +62,7 @@ peer channel list
 
 docker exec -it cli bash
 
-export CHANNEL_NAME=mychannel 
+export CHANNEL_NAME=landchannel 
 
 export CORE_PEER_LOCALMSPID=RevMSP 
 
@@ -84,7 +89,7 @@ peer channel list
 
 docker exec -it cli bash
 
-export CHANNEL_NAME=mychannel 
+export CHANNEL_NAME=landchannel 
 
 export CORE_PEER_LOCALMSPID=BankMSP 
 
@@ -137,7 +142,7 @@ peer channel update -o orderer.example.com:7050 -c ${CHANNEL_NAME} -f ./config/B
 
 ############## peer0_Sro terminal ##############
 
-peer lifecycle chaincode package fabland.tar.gz --path /opt/gopath/src/github.com/chaincode/fabland/javascript/ --lang node --label fabland_1
+peer lifecycle chaincode package fabland.tar.gz --path /opt/gopath/src/github.com/chaincode/fabland/javascript/ --lang node --label fabland_2
 
 peer lifecycle chaincode install fabland.tar.gz
 

@@ -1,0 +1,18 @@
+
+    async createLand(ctx, landId, district, subRegistrarOffice, taluk, village, blockNo, resurveyNo,
+peer chaincode invoke -o orderer.example.com:7050  --tls --cafile $ORDERER_TLS_CA --channelID ${CHANNEL_NAME} --name fabland --peerAddresses peer0.sro.example.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/sro.example.com/peers/peer0.sro.example.com/tls/ca.crt  --peerAddresses peer0.rev.example.com:9051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/rev.example.com/peers/peer0.rev.example.com/tls/ca.crt -c '{"function":"createLand", "Args":["land001","Tata","Tiago","Black","Jack"]}'
+
+
+
+peer chaincode invoke -o orderer.example.com:7050  --tls --cafile $ORDERER_TLS_CA --channelID ${CHANNEL_NAME} --name fabland --peerAddresses peer0.sro.example.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/sro.example.com/peers/peer0.sro.example.com/tls/ca.crt  --peerAddresses peer0.rev.example.com:9051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/rev.example.com/peers/peer0.rev.example.com/tls/ca.crt -c '{"function":"createLand", "Args":["land001","Nalgonda,"katangur","sss","Edloour","123","456","3","5","swathi","vinod","suchi","bhargav","nun","shravan b","987654"]}'
+
+
+peer chaincode invoke -o orderer.example.com:7050  --tls --cafile $ORDERER_TLS_CA --channelID ${CHANNEL_NAME} --name fabland --peerAddresses peer0.sro.example.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/sro.example.com/peers/peer0.sro.example.com/tls/ca.crt  --peerAddresses peer0.rev.example.com:9051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/peerOrganizations/rev.example.com/peers/peer0.rev.example.com/tls/ca.crt -c '{"function":"createLand", "Args":["Land101","Nalgonda,"Katangur","Sss","Edloour","123","456","3","0.5","swathi","vinod","suchi","bhargav","first","shravan b","987654"]}'
+
+
+peer chaincode query -o orderer.example.com:7050  --tls --cafile $ORDERER_TLS_CA --channelID ${CHANNEL_NAME} --name fabland --peerAddresses $CORE_PEER_ADDRESS --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE -c '{"function":"readLand", "Args":["Land101"]}'
+
+{"function":"createLand", "Args":["Land101","Nalgonda","Katangur","Sss","Edloour","123","456","3","0.5","swathi","vinod","suchi","bhargav","first","shravan b","987654"]}'
+
+async createLand(ctx, landId, district, subRegistrarOffice, taluk, village, blockNo, resurveyNo,
+        areaAcres, areaCent, eastBoundary, northBoundary, westBoundary, southBoundary, remarks, presentOwner, oldsurveyNo) 
